@@ -3,8 +3,8 @@
 ## CONSTANT DEFINITIONS
 ##################################################
 ##################################################
-fnargs_string_lm <- 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = modelee_dataset)'
-fnargs_string_correlation <- 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = modelee_dataset)'
+fnargs_string_lm <- 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = na.omit(modelee_dataset[c(each_response_name, each_predictor_name)]))'
+fnargs_string_correlation <- 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = na.omit(modelee_dataset[c(each_response_name, each_predictor_name)]))'
 
 ##################################################
 ##################################################
@@ -91,7 +91,7 @@ bf_model_boolean_significance_evaluator_fn <- function(extractee_single_model, s
 
 ## EMBEDDED FUNCTION TO BE CALLED
 ## FUCNTIONAL PROGRAMMIND DEFINITIOPN
-functionalled_model_fitting_fn <- function(modelee_dataset, each_response_name, each_predictor_name, model_fitting_function = lm, fn_arguments_list = 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = modelee_dataset)')
+functionalled_model_fitting_fn <- function(modelee_dataset, each_response_name, each_predictor_name, model_fitting_function = lm, fn_arguments_list = 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = na.omit(modelee_dataset[c(each_response_name, each_predictor_name)]))')
 {
 	do.call(model_fitting_function, eval(parse(text = fn_arguments_list)))
 }
@@ -101,7 +101,7 @@ functionalled_model_fitting_fn <- function(modelee_dataset, each_response_name, 
 ## MOVE THIS FUNCTION TO THE VERY END OF FUNCITON DEFINITIONS
 ## MAIN NESTED MAPPER
 ## FUNCTION TO MAKE EMBEDDED MAPPINGS for generatin list of bayeesian models
-model_fitting_nested_mapper_main_fn <- function(modelee_dataset, responses_variables_names, predictors_variables_names, model_fitting_fn = lm, fn_arguments_list = 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = modelee_dataset)')
+model_fitting_nested_mapper_main_fn <- function(modelee_dataset, responses_variables_names, predictors_variables_names, model_fitting_fn = lm, fn_arguments_list = 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = na.omit(modelee_dataset[c(each_response_name, each_predictor_name)]))')
 {
 	sapply(responses_variables_names,
 	       \(each_response_name) sapply(predictors_variables_names,
@@ -135,7 +135,7 @@ show_variables_of_interest_fn <- function(significat_names_pairs_list, resulting
 
 ## TAKE TE PARAMETERS FROM THE MAPPER
 #MODEL_FITTING_NESTED_MAPPER_MAIN_FN <- FUNCTION(MODELEE_DATASET, RESPONSES_VARIABLES_NAMES, PREDICTORS_VARIABLES_NAMES, MODEL_FITTING_FN = LM, FN_ARGUMENTS_LIST = 'LIST(FORMULA = AS.FORMULA(PASTE(EACH_RESPONSE_NAME, \'~\', EACH_PREDICTOR_NAME)), DATA = MODELEE_DATASET)')
-analyses_embedded_mapper_and_variables_of_interest_shower_main_fn <- function(modelee_dataset, responses_variables_names, predictors_variables_names, model_fitting_fn = lm, fn_arguments_list = 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = modelee_dataset)', significance_threshold = 0.05, varnames_of_interest_vector = NULL)
+analyses_embedded_mapper_and_variables_of_interest_shower_main_fn <- function(modelee_dataset, responses_variables_names, predictors_variables_names, model_fitting_fn = lm, fn_arguments_list = 'list(formula = as.formula(paste(each_response_name, \'~\', each_predictor_name)), data = na.omit(modelee_dataset[c(each_response_name, each_predictor_name)]))', significance_threshold = 0.05, varnames_of_interest_vector = NULL)
 {
 	resulting_fits_unlistee_list_of_lists <- model_fitting_nested_mapper_main_fn(modelee_dataset, responses_variables_names, predictors_variables_names, model_fitting_fn, fn_arguments_list)
 	## DECISIOPN ON TH KIND OF FIT ED MODEL LM OR BF

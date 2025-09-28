@@ -4,6 +4,22 @@
 # ONCE THE SIGNIFICANT CORRELATIONS HAVE BEEN IDENTIFIED THEIR  P ARE PRINTED
 # AND THEY ARE PLOTTED USING GGPLOT
 #==========================================================================
+
+#==========================================================================
+## GLOBASL THEMES AND COLOR SCALES
+theme_set(theme_economist(
+       base_size = 10,
+       base_family = 'sans',
+       horizontal = TRUE,
+       dkpanel = TRUE))
+options(
+	ggplot2.continuous.colour = scale_colour_stata,
+	ggplot2.continuous.fill = scale_fill_stata,
+	ggplot2.discrete.colour = scale_colour_stata,
+	ggplot2.discrete.fill = scale_fill_stata)
+
+
+#==========================================================================
 #DEFINE THE FUNCTIONS to generate SCATTER PLOTS AND SUBROUTINES
 #==========================================================================
 scatterp_with_regression_lines <- function(plotee_pair, rows_dataset, columns_dataset)

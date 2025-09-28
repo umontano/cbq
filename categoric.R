@@ -1,3 +1,14 @@
+## GLOBASL THEMES AND COLOR SCALES
+theme_set(theme_economist(
+       base_size = 10,
+       base_family = 'sans',
+       horizontal = TRUE,
+       dkpanel = TRUE))
+options(
+	ggplot2.continuous.colour = scale_colour_stata,
+	ggplot2.continuous.fill = scale_fill_stata,
+	ggplot2.discrete.colour = scale_colour_stata,
+	ggplot2.discrete.fill = scale_fill_stata)
 
 #function REGRESSIONS significant values
 one_by_one_significant_predictors_lm  <- function(one_response, predictors, threshold_significance = 0.05, categorical_flag = FALSE, logit_binomial_flag = FALSE)

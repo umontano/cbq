@@ -19,7 +19,7 @@ variable_names_cbqfn_nonitems_columns <<- setdiff(names(cbqfn_raw_questionnaire_
 	## SET THE ROW NAMES USING THE ID COLUMN
 	if(length(grep('^ID', names(cbqfn_raw_questionnaire_answers_dataset), ignore.case = TRUE)) > 0) variable_names_cbqfn_id_columns <<- grep('^ID', names(cbqfn_raw_questionnaire_answers_dataset), ignore.case = TRUE, value = TRUE)[1]
 	## SAVE
-	write.csv(cbqfn_non_item_columns_dataset, 'xCBQ_OTROS_DATOS.csv', row.names=TRUE)
+	#write.csv(cbqfn_non_item_columns_dataset, 'xCBQ_OTROS_DATOS.csv', row.names=TRUE)
 	cbqfn_meanee_only_item_answers_columns_dataset
 }
 

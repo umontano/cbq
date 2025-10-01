@@ -7,6 +7,8 @@
 
 #==========================================================================
 ## GLOBASL THEMES AND COLOR SCALES
+library('ggplot2')
+library('ggthemes')
 theme_set(theme_economist(
        base_size = 10,
        base_family = 'sans',
